@@ -85,7 +85,7 @@ vec4 effect(vec4 color, Image texture, vec2 textureCoordinates, vec2 screenCoord
     vec2 realInternalHalfWindowDimensions = realInternalWindowDimensions * 0.5;
 
     float internalRoundedRectDistance = SignedDistanceFields(rotatedWindowCenterUVCoord, realInternalHalfWindowDimensions - cornerRadius, cornerRadius);
-    float uvOffsetFactor = 1 - clamp(abs(internalRoundedRectDistance) * max(windowSize.x, windowSize.y) + cornerRadius, 0.0, 1.0);
+    float uvOffsetFactor = 1.0 - clamp(abs(internalRoundedRectDistance) * max(windowSize.x, windowSize.y) + cornerRadius, 0.0, 1.0);
 
     float currentGradientProgress = (rotatedWindowCenterUVCoord.x / (sqrt(min(realInternalHalfWindowDimensions.x, realInternalHalfWindowDimensions.y) / max(realInternalHalfWindowDimensions.x, realInternalHalfWindowDimensions.y)) / max(absoluteCosineAngle, absoluteSineAngle)) + max(realInternalHalfWindowDimensions.x * absoluteCosineAngle, realInternalHalfWindowDimensions.y * absoluteSineAngle)) / max(realInternalWindowDimensions.x * absoluteCosineAngle, realInternalWindowDimensions.y * absoluteSineAngle);
     currentGradientProgress = clamp(currentGradientProgress, 0.0, 1.0);
